@@ -71,3 +71,9 @@ typings/
 
 # Serverless directories
 .serverless
+
+
+
+
+#electron builds !
+out/

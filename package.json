@@ -2,9 +2,9 @@
   "name": "orangetv-remote",
   "version": "1.0.0",
   "description": "An Orange TV Remote",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,9 @@
     "url": "https://github.com/rigwild/orangetv-remote/issues"
   },
   "homepage": "https://github.com/rigwild/orangetv-remote#readme",
+  "devDependencies": {
+    "electron": "^2.0.2"
+  },
   "dependencies": {
     "is-reachable": "^2.4.0",
     "querystring": "^0.2.0"
