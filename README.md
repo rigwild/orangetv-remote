@@ -1,5 +1,6 @@
 # orangetv-remote
 An Orange TV remote app based on [electron](https://github.com/electron/electron). This multi-platform app lets you control your Orange TV directly from your computer. It works perfectly.
+
 When starting it will scan the network to find the Orange TV's IP address, then you can enjoy controlling your TV without the need of the physical remote.
 
 ## Install
@@ -10,7 +11,7 @@ To install this app, you first need to have node.js and npm. You can do so by ex
 
 You can find more informations on node.js's installation guide : [https://nodejs.org/en/download/package-manager/](https://nodejs.org/en/download/package-manager/).
 
-___
+
 You then need to download the content of the repository and install the needed dependencies through these commands :
 
     $ git clone https://github.com/rigwild/orangetv-remote
@@ -26,7 +27,7 @@ If you have troubles connecting with your TV, uncomment this line in *./main.js*
 
       // Open the DevTools.
       // mainWindow.webContents.openDevTools()
-___
+
 You are done ! To start the app without compiling it into an executable you can run this command in the root directory of the repository :
 
     $ npm start
