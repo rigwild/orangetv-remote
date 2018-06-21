@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/rigwild/orangetv-remote#readme",
   "devDependencies": {
-    "electron": "^2.0.2"
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0"
   },
   "dependencies": {
     "is-reachable": "^2.4.0",
