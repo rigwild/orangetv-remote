@@ -1,0 +1,24 @@
+body {
+  background-color: #343a40;
+}
+
+#remote {
+  max-width: 18rem;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+@media all and (max-width: 500px)
+{
+  body {
+    zoom: 130%;
+  }
+  #remote {
+    max-width: initial;
+    width: 100%;
+    padding: 0;
+    margin: 0 !important;
+  }
+}
