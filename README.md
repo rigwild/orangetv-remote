@@ -15,7 +15,9 @@ You can find more informations on node.js's installation guide : [https://nodejs
 You then need to download the content of the repository and install the needed dependencies through these commands :
 
     $ git clone https://github.com/rigwild/orangetv-remote
+    $ cd ./orangetv-remote
     $ npm install
+
 ## Configure
 If you modified your default network settings, you should change this line in the *./assets/js/orangeTvRemoteHttp.js* file to match the IP prefix you set :
 
@@ -33,10 +35,13 @@ You are done ! To start the app without compiling it into an executable you can 
     $ npm start
 
 ## Compile
-In order to compile this app for your system, you can run the file *build_current_platform.sh* or execute the following commands :
+In order to compile this app for your system, you can run the file *build_current_platform.sh* or execute the following command :
 
     $ electron-packager --out out/ --icon assets/icon/favicon.ico --overwrite ./
 The *./out/* directory will be created, containing your compiled application.
+
+## Releases
+If you don't want to go through the hassle of compiling the app yourself, you can download pre-compiled builds in the [releases tab](https://github.com/rigwild/orangetv-remote/releases). You don't need to install anything, it is a portable app.
 
 ## App showcase
 ![demo](https://github.asauvage.fr/img/other/orangetv-remote.gif)
