@@ -1,4 +1,9 @@
-const orangeTvRemoteHttp = require('./assets/js/orangeTvRemoteHttp.js');
+const http = require('http')
+const querystring = require('querystring')
+
+const tvIP = process.env.tvIP
+const tvPort = process.env.tvPort
+console.log(tvIP,tvPort)
 
 const buttonList = [
   {name: 'power', id: 116},
@@ -30,18 +35,42 @@ const buttonList = [
   {name: 'backward', id: 168},
   {name: 'forward', id: 159},
   {name: 'vod', id: 393}
-];
+]
 
-const addButtonEvent = tvIP => {
-  buttonList.forEach(x => {
-    const ele = document.getElementById(x.name);
-    if (ele) ele.addEventListener('click', () => orangeTvRemoteHttp.pushButton(tvIP, x.id));
-  });
+//A http request wrapper
+const request = (ip, port, path, method, query) =>
+  new Promise((resolve, reject) => {
+    const options = {
+      hostname: ip,
+      path: path + (query ? '?' + query : ''),
+      port: port,
+      method: method
+    }
+    const req = http.request(options, res => {
+      res.setEncoding('utf8')
+      let rawData = ''
+      res.on('data', chunk => rawData += chunk)
+      res.on('end', () => resolve(rawData))
+    })
+    req.on('error', (e) => reject(e))
+    req.end()
+  })
+
+//Push a button of the remote
+const pushButton = buttonId => {
+  let query = {
+    operation: "01",
+    key: buttonId,
+    mode: "0"
+  };
+  request(tvIP, tvPort, '/remoteControl/cmd', 'GET', querystring.stringify(query))
+    .catch(err => console.error('Failed activating the button', err))
 }
 
-orangeTvRemoteHttp.findTvIP()
-  .catch(err => console.error("Could not find the Orange TV's IP.", err))
-  .then(tvIP => {
-    console.log("Found your Orange TV's IP : " + tvIP);
-    addButtonEvent(tvIP);
+const addButtonEvent = () =>
+  buttonList.forEach(x => {
+    const ele = document.getElementById(x.name)
+    if (ele) ele.addEventListener('click', () => pushButton(x.id))
   })
+
+document.addEventListener("DOMContentLoaded", () => addButtonEvent(tvIP))

@@ -5,6 +5,9 @@ const {
   Menu
 } = require('electron');
 
+process.env.tvIP = '192.168.1.12'
+process.env.tvPort = 8080
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
