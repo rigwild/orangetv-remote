@@ -9,7 +9,7 @@ Download the content of the repository and install the needed dependencies throu
     npm install
 
 ## Configure
-If you modified your default network settings, you can set your own configuration in the *.env* file.
+If you modified your default network settings, you can set your own configuration in the *./main.js* file.
 
     tvIP='192.168.1.12'
     tvPort=8080
