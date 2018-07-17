@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager --out out/ --icon assets/icon/favicon.ico --overwrite ./",
-    "build_all": "electron-packager --out out/ --icon assets/icon/favicon.ico --all --overwrite ./"
+    "build": "electron-packager --out out/ --icon public/assets/icon/favicon.ico --overwrite ./",
+    "build_all": "electron-packager --out out/ --icon public/assets/icon/favicon.ico --all --overwrite ./"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
     "electron-packager": "^12.1.0"
   },
   "dependencies": {
-    "dotenv": "^6.0.0",
     "http": "0.0.0",
     "is-reachable": "^2.4.0",
     "querystring": "^0.2.0"

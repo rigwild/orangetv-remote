@@ -1,5 +1,7 @@
-require('dotenv').config()
 const { app, BrowserWindow, Menu } = require('electron')
+
+process.env.tvIP = '192.168.1.12'
+process.env.tvPort = 8080
 
 let mainWindow
 
