@@ -34,6 +34,9 @@ Build for all systems :
 
 The *./out/* directory will be created, containing your compiled application.
 
+## Releases
+If you don't want to go through the hassle of building the app yourself, you can download pre-compiled builds in the [releases tab](https://github.com/rigwild/orangetv-remote/releases). You don't need to install anything, it is a portable app.
+
 ## App showcase
 ![demo](https://github.rigwild.dev/img/other/orangetv-remote.gif)
 
