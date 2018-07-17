@@ -23,6 +23,7 @@
     "electron-packager": "^12.1.0"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "http": "0.0.0",
     "is-reachable": "^2.4.0",
     "querystring": "^0.2.0"
