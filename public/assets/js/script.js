@@ -3,7 +3,6 @@ const querystring = require('querystring')
 
 const tvIP = process.env.tvIP
 const tvPort = process.env.tvPort
-console.log(tvIP,tvPort)
 
 const buttonList = [
   {name: 'power', id: 116},
