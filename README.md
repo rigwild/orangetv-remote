@@ -26,6 +26,7 @@ You are done ! To start the app without compiling it into an executable you can 
 ## Build
 In order to build this app for your system, use :
 
+    npm install --save-dev
     npm run build
 
 Build for all systems : 
@@ -38,7 +39,7 @@ The *./out/* directory will be created, containing your compiled application.
 If you don't want to go through the hassle of building the app yourself, you can download pre-compiled builds in the [releases tab](https://github.com/rigwild/orangetv-remote/releases). You don't need to install anything, it is a portable app.
 
 ## App showcase
-![demo](https://github.asauvage.fr/img/other/orangetv-remote.gif)
+![demo](orangetv-remote.gif)
 
 ## License
 [The MIT license](https://github.com/rigwild/orangetv-remote/blob/master/LICENSE)
