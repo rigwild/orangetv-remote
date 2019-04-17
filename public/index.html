@@ -13,6 +13,9 @@
     <div class="row">
       <div class="col-sm-6 mx-auto mt-3" id="remote">
         <div class="card text-white bg-secondary">
+          <transition name="fade" mode="out-in">
+            <div v-if="!configMenu" @click="configMenu = !configMenu" id="settings-icon"><i class="fas fa-cog"></i></div>
+          </transition>
           <div class="card-header text-center">Orange TV Remote</div>
           <div class="card-body">
             <transition name="slide-fade" mode="out-in">
@@ -27,6 +30,15 @@
                     <input v-model.number="port" type="number" class="form-control text-center" id="port" placeholder="Enter port...">
                   </div>
                   <button type="submit" class="btn btn-primary">Check configuration</button>
+                  
+                  <transition name="fade" mode="out-in">
+                    <div v-if="configMenuLoading" key="loader" class="text-center mt-3">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <div v-else-if="!configMenuLoading && configMenuErr" key="error" class="alert alert-danger mt-3" role="alert">
+                      {{ configMenuErr }}
+                    </div>
+                  </transition>
                 </form>
               </div>
               <div v-else key="remote">

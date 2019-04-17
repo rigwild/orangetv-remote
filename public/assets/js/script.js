@@ -34,10 +34,15 @@ const buttonList = {
 
 new Vue({
   el: '#app',
-  data: {
-    configMenu: true,
-    ip: '192.168.1.16',
-    port: 8080
+  data() {
+    return {
+      configMenu: true,
+      configMenuLoading: false,
+      configMenuErr: null,
+
+      ip: '192.168.1.16',
+      port: 8080
+    }
   },
   methods: {
     // Get the full url to the API
@@ -47,13 +52,20 @@ new Vue({
 
     // Check configuration is valid
     async checkConfig() {
-      return fetch(`${this.getApiPrefix()}?operation=10`)
+      this.configMenuLoading = true
+      // Timeout after 1s
+      const controller = new AbortController()
+      const signal = controller.signal
+      setTimeout(() => controller.abort(), 1500)
+
+      return fetch(`${this.getApiPrefix()}?operation=10`, { signal })
         .then(res => res.json())
         .then(res => {
           if (res.result.message === 'ok')
             this.configMenu = false
         })
-        .catch(() => false)
+        .catch(() => (this.configMenuErr = `Could not connect to ${this.ip}:${this.port}.`))
+        .finally(() => (this.configMenuLoading = false))
     },
 
     // Push a button of the remote
