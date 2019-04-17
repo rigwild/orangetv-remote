@@ -1,13 +1,21 @@
 body {
   background-color: #343a40;
 }
-
 #remote {
   max-width: 18rem;
 }
-
 ::-webkit-scrollbar {
   width: 0px;
+}
+#settings-icon {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  cursor: pointer;
+  transition-duration: .3s;
+}
+#settings-icon:hover {
+  text-shadow: 0 0 20px #ffffff;
 }
 
 @media all and (max-width: 500px)
@@ -21,6 +29,17 @@ body {
     padding: 0;
     margin: 0 !important;
   }
+  #settings-icon {
+    top: 9px;
+    left: 8px;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 .slide-fade-enter-active {

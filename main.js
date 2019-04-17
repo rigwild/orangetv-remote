@@ -6,7 +6,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 290,
     height: 530,
-    minWidth: 250,
+    minWidth: 275,
     icon: 'public/assets/icon/favicon.ico',
     webPreferences: {
       webSecurity: false // Bypass CORS request
