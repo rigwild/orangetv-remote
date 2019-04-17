@@ -1,39 +1,35 @@
 # orangetv-remote
-An Orange TV remote app based on [electron](https://github.com/electron/electron). This multi-platform app lets you control your Orange TV directly from your computer.
-
-## Install
-Download the content of the repository and install the needed dependencies through these commands :
-
-    git clone https://github.com/rigwild/orangetv-remote
-    cd orangetv-remote
-    npm install
+An Orange TV remote app based on [electron](https://github.com/electron/electron). This app lets you control your Orange TV directly from your computer.
 
 ## Configure
-If you modified your default network settings, you can set your own configuration in the *./main.js* file.
+Download required dependencies.
+```console
+yarn install
+```
 
-    tvIP='192.168.1.12'
-    tvPort=8080
+Start the app.
+```console
+yarn start
+```
 
-If you have troubles connecting with your TV, uncomment this line in *./main.js* so the developer tools will open when starting the app.
-
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
-
-You are done ! To start the app without compiling it into an executable you can run this command.
-
-    npm start
+If you have troubles connecting with your TV, uncomment this line in *[main.js](./main.js)* so the developer tools will open when starting the app.
+```js
+// Open the DevTools.
+// mainWindow.webContents.openDevTools()
+```
 
 ## Build
-In order to build this app for your system, use :
+Build this app for your system.
+```console
+yarn build
+```
 
-    npm install --save-dev
-    npm run build
+Build for all systems.
+```console
+yarn build_all
+```
 
-Build for all systems : 
-
-    npm run build_all
-
-The *./out/* directory will be created, containing your compiled application.
+The `out/` directory will be created, containing your compiled application.
 
 ## Releases
 If you don't want to go through the hassle of building the app yourself, you can download pre-compiled builds in the [releases tab](https://github.com/rigwild/orangetv-remote/releases). You don't need to install anything, it is a portable app.
