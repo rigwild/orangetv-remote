@@ -15,7 +15,7 @@ const createWindow = () => {
   mainWindow.loadFile('public/index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => (mainWindow = null))
 }

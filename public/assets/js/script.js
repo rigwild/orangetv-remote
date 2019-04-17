@@ -61,8 +61,11 @@ new Vue({
       return fetch(`${this.getApiPrefix()}?operation=10`, { signal })
         .then(res => res.json())
         .then(res => {
-          if (res.result.message === 'ok')
+          if (res.result.message === 'ok') {
             this.configMenu = false
+            this.configMenuLoading = false
+            this.configMenuErr = null
+          }
         })
         .catch(() => (this.configMenuErr = `Could not connect to ${this.ip}:${this.port}.`))
         .finally(() => (this.configMenuLoading = false))
