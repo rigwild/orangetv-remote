@@ -1,8 +1,5 @@
 const { app, BrowserWindow, Menu } = require('electron')
 
-process.env.tvIP = '192.168.1.12'
-process.env.tvPort = 8080
-
 let mainWindow
 
 const createWindow = () => {
@@ -10,12 +7,17 @@ const createWindow = () => {
     width: 290,
     height: 530,
     minWidth: 250,
-    icon: 'public/assets/icon/favicon.ico'
+    icon: 'public/assets/icon/favicon.ico',
+    webPreferences: {
+      webSecurity: false // Bypass CORS request
+    }
   })
   mainWindow.loadFile('public/index.html')
+
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-  mainWindow.on('closed', () => mainWindow = null)
+  mainWindow.webContents.openDevTools()
+
+  mainWindow.on('closed', () => (mainWindow = null))
 }
 
 app.on('ready', () => {

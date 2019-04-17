@@ -4,103 +4,121 @@
   <title>Orange TV Remote</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="./assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
 </head>
 <body>
-  <div class="container-fluid">
+  <div id="app" class="container-fluid">
     <div class="row">
       <div class="col-sm-6 mx-auto mt-3" id="remote">
         <div class="card text-white bg-secondary">
           <div class="card-header text-center">Orange TV Remote</div>
           <div class="card-body">
-            <!-- Power -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="power"><i class="fas fa-power-off"></i></button>
-            </div>
-
-            <!-- Menu -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="menu">MENU</button>
-            </div>
-
-            <!-- Arrows / OK -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="up"><i class="fas fa-chevron-up"></i></button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="left"><i class="fas fa-chevron-left"></i></button>
-              <button type="button" class="btn btn-secondary" id="ok">OK</button>
-              <button type="button" class="btn btn-secondary" id="right"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="down"><i class="fas fa-chevron-down"></i></button>
-            </div>
-
-            <!-- Back -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="back">BACK</button>
-            </div>
-
-            <!-- Volume / Channel -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="volUp"><i class="fas fa-volume-up"></i> <i class="fas fa-angle-double-up"></i></button>
-              <button type="button" class="btn btn-secondary" id="chanUp"><i class="fas fa-tv fa-sm"></i> <i class="fas fa-angle-double-up"></i></button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="volDown"><i class="fas fa-volume-up"></i> <i class="fas fa-angle-double-down"></i></button>
-              <button type="button" class="btn btn-secondary" id="chanDown"><i class="fas fa-tv fa-sm"></i> <i class="fas fa-angle-double-down"></i></button>
-            </div>
-
-            <!-- Mute -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="mute">MUTE</button>
-            </div>
-
-            <!-- Channel numbers -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="1">1</button>
-              <button type="button" class="btn btn-secondary" id="2">2</button>
-              <button type="button" class="btn btn-secondary" id="3">3</button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="4">4</button>
-              <button type="button" class="btn btn-secondary" id="5">5</button>
-              <button type="button" class="btn btn-secondary" id="6">6</button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="7">7</button>
-              <button type="button" class="btn btn-secondary" id="8">8</button>
-              <button type="button" class="btn btn-secondary" id="9">9</button>
-            </div>
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="0">0</button>
-            </div>
-
-            <!-- Stop / Play-Pause / Record -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="stop"><i class="fas fa-stop"></i></button>
-              <button type="button" class="btn btn-secondary" id="play-pause"><i class="fas fa-pause"></i>     <i class="fas fa-play"></i></button>
-              <button type="button" class="btn btn-secondary" id="record"><i class="fas fa-video"></i></button>
-            </div>
-
-            <!-- Backward / Forward -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="backward"><i class="fas fa-backward"></i></button>
-              <button type="button" class="btn btn-secondary" id="forward"><i class="fas fa-forward"></i></button>
-            </div>
-
-            <!-- VOD -->
-            <div class="col-sm-12 mx-auto text-center">
-              <button type="button" class="btn btn-secondary" id="vod">VOD</button>
-            </div>
+            <transition name="slide-fade" mode="out-in">
+              <div v-if="configMenu" key="configMenu">
+                <form @submit.prevent="checkConfig" class="text-center">
+                  <div class="form-group">
+                    <label for="ip">Your Orange TV IP</label>
+                    <input v-model="ip" type="text" class="form-control text-center" id="ip" placeholder="Enter IP...">
+                  </div>
+                  <div class="form-group">
+                    <label for="port">Your Orange TV port</label>
+                    <input v-model.number="port" type="number" class="form-control text-center" id="port" placeholder="Enter port...">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Check configuration</button>
+                </form>
+              </div>
+              <div v-else key="remote">
+                <!-- Power -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('power')"><i class="fas fa-power-off"></i></button>
+                </div>
+    
+                <!-- Menu -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('menu')">MENU</button>
+                </div>
+    
+                <!-- Arrows / OK -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('up')"><i class="fas fa-chevron-up"></i></button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('left')"><i class="fas fa-chevron-left"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('ok')">OK</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('right')"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('down')"><i class="fas fa-chevron-down"></i></button>
+                </div>
+    
+                <!-- Back -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('back')">BACK</button>
+                </div>
+    
+                <!-- Volume / Channel -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('volUp')"><i class="fas fa-volume-up"></i> <i class="fas fa-angle-double-up"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('chanUp')"><i class="fas fa-tv fa-sm"></i> <i class="fas fa-angle-double-up"></i></button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('volDown')"><i class="fas fa-volume-up"></i> <i class="fas fa-angle-double-down"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('chanDown')"><i class="fas fa-tv fa-sm"></i> <i class="fas fa-angle-double-down"></i></button>
+                </div>
+    
+                <!-- Mute -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('mute')">MUTE</button>
+                </div>
+    
+                <!-- Channel numbers -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('1')">1</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('2')">2</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('3')">3</button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('4')">4</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('5')">5</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('6')">6</button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('7')">7</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('8')">8</button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('9')">9</button>
+                </div>
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('0')">0</button>
+                </div>
+    
+                <!-- Stop / Play-Pause / Record -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('stop')"><i class="fas fa-stop"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('play-pause')"><i class="fas fa-pause"></i>     <i class="fas fa-play"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('record')"><i class="fas fa-video"></i></button>
+                </div>
+    
+                <!-- Backward / Forward -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('backward')"><i class="fas fa-backward"></i></button>
+                  <button type="button" class="btn btn-secondary" @click="pushButton('forward')"><i class="fas fa-forward"></i></button>
+                </div>
+    
+                <!-- VOD -->
+                <div class="col-sm-12 mx-auto text-center">
+                  <button type="button" class="btn btn-secondary" @click="pushButton('vod')">VOD</button>
+                </div>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
   <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>
